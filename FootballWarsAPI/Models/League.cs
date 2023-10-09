@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public string Img_Name { get; set; }
-        public List<Club> clubs { get; set; }
+        public List<Club> Clubs { get; set; }
     }
 }

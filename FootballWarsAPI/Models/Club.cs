@@ -7,6 +7,6 @@
         public string Img_Name { get; set; }
         public League League { get; set; }
         public int LeagueId { get; set; }
-        public List<Player> players { get; set; }
+        public List<Player> Players { get; set; }
     }
 }
