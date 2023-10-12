@@ -1,4 +1,6 @@
-﻿namespace FootballWarsAPI.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace FootballWarsAPI.Models
 {
     public class League
     {

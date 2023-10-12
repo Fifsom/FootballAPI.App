@@ -1,4 +1,5 @@
-﻿using FootballWarsAPI.Models;
+﻿using FootballWarsAPI.DataSeeders;
+using FootballWarsAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace FootballWarsAPI.Data
@@ -25,6 +26,10 @@ namespace FootballWarsAPI.Data
                 .HasOne(l => l.League)
                 .WithMany(c => c.Clubs)
                 .HasForeignKey(l => l.LeagueId);
+
+            LeagueSeeder.SeedLeagues(modelBuilder);
+            ClubSeeder.SeedClubs(modelBuilder);
+            PlayerSeeder.SeedPlayers(modelBuilder);
         }
     }
 }
