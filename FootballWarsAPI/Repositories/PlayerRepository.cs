@@ -14,15 +14,17 @@ namespace FootballWarsAPI.Repositories
             _context = context;
         }
 
-        public Task<Player> AddPlayer(Player player)
+        public async Task<Player> AddPlayer(Player player)
         {
-            throw new NotImplementedException();
+            var result = await _context.Player.AddAsync(player);
+            await _context.SaveChangesAsync();
+            return result.Entity;
         }
 
         public async Task<Player> DeletePlayer(int id)
         {
             var result = await _context.Player.FirstOrDefaultAsync(x => x.Id == id);
-            if(result == null)
+            if(result != null)
             {
                 _context.Player.Remove(result);
                 await _context.SaveChangesAsync();
@@ -39,17 +41,17 @@ namespace FootballWarsAPI.Repositories
         public async Task<Player> GetPlayer()
         {
             Player randomPlayer = new();
-            var random = new Random();
+            var rand = new Random();
             var avialablePlayers = await _context.Player.ToListAsync();
-            int index = random.Next(avialablePlayers.Count);
+            int index = rand.Next(avialablePlayers.Count);
             randomPlayer = avialablePlayers[index];
 
             return randomPlayer;
         }
 
-        public Task<Player> GetPlayerById(int id)
+        public async Task<Player> GetPlayerById(int id)
         {
-            return _context.Player.FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Player.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<Player> UpdatePlayer(Player player)
