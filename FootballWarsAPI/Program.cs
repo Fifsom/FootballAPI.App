@@ -1,4 +1,6 @@
 using FootballWarsAPI.Data;
+using FootballWarsAPI.Interfaces;
+using FootballWarsAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IFootballRepository, FootballRepository>();
 
 builder.Services.AddDbContext<FootballContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default") ?? throw new InvalidOperationException("Connectionstring Default not found")));
